@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Similar Books</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Auto Complete -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+
+  <!-- External CSS -->
+  <link rel= "stylesheet" type= "text/css" href= "/static/style.css">
+
+</head>
+<style>
+body{
+  background-image: url(/static/book2.jpg);
+  background-repeat: repeat-x repeat-y;
+  background-position: center;
+}
+</style>
+
+<body>
+
+    <!--Search button 2-->
+    <center> <h1 class="app-title" style="color:white;">Search For similar Book</h1> </center>
+
+    <form action="/recommend" method="POST">
+
+        <div class="form-group shadow-textarea" style="margin-top: 30px;text-align: center;color: white;">
+            <input name="requested_book" type="text" class="movie form-control" id="autoComplete" autocomplete="off" style="background-color: #ffffff;border-color:#ffffff;width: 60%;color: #181818" placeholder="Enter the Book that you know" required>
+            <ul id="food_list"></ul>
+        </div>
+
+        <div class="form-group" style="text-align: center;">
+            <input type="submit" class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;">
+        </div>
+
+    </form>
+
+    <center><a href="/"><p>Back Home</p></a></center><hr>
+
+
+
+    <!--Content-->
+    <div class="container"> 
+
+        <!--Top-->
+        <center> <h1 style="font-family: 'Rowdies', cursive;color: #ffffff;">Similar Books</h1> </center>
+        <!--Recommendation-->
+        <div class="movie" style="color: #E8E8E8;">\
+            <center>
+                <h2 style="font-family: 'Rowdies', cursive; color: black; background-color: lightgrey;" >SIMILAR BOOKS</h2>
+            </center>
+        </div>
+
+        <div class="movie-content">
+
+            {% if data %}
+            {% for sim_book in data %}
+                <!-- # df = ['Book-Title','Book-Author','Image'] -->
+
+                <div class="card" style="width: 14rem;">
+                
+                    <div class="imghvr">
+                      <img class="card-img-top" alt="The Trip - poster" src="{{ sim_book[2]  }}">
+                      
+                      <div class="card-img-overlay">
+                        <span class="card-text" style="font-size:15px;background: #000000b8;color:white;padding:2px 5px;border-radius: 10px;"><span class="fa fa-star checked">&nbsp; 6.66 / 10</span></span>
+                      </div>
+                      
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Rowdies', cursive;font-size: 17px;">{{ sim_book[0] }}</h5>
+                      <h2 class="card-title" style="font-family: 'Rowdies', cursive;font-size: 17px;">Director :{{ sim_book[1] }}</h2>
+                    </div>
+      
+                  </div>
+
+            {% endfor %}
+          {% endif %}
+
+
+        </div>
+     
+
+    </div>
+</body>
+</html>

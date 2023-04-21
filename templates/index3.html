@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Books</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Auto Complete -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+
+  <!-- External CSS -->
+  <link rel= "stylesheet" type= "text/css" href= "/static/style.css">
+
+</head>
+<style>
+body{
+  background-image: url(/static/book.jpg);
+  background-repeat: repeat-x repeat-y;
+  background-position: center;
+}
+</style>
+
+<body>
+
+    <!--Search button 2-->
+    <center> <h1 class="app-title" style="color: red;">BOOKS RECOMMENDATION SYSTEM</h1><hr> </center>
+    
+    <div class="movie" style="color: #E8E8E8;">
+        <center> <h1 style="font-family: 'Rowdies', cursive;color: #ffffff;">Similar BookS</h1> </center>
+        <center><a href="/recommend"><h4>Searching for Similar Books</h4></a></center>
+    </div>
+
+    <form action="/recommend" method="POST">
+        <div class="form-group shadow-textarea" style="margin-top: 30px;text-align: center;color: white;">
+            <input name="requested_book" type="text" class="movie form-control" id="autoComplete" autocomplete="off" style="background-color: #ffffff;border-color:#ffffff;width: 60%;color: #181818" placeholder="Enter the Book that you know" required>
+        </div>
+
+        <div class="form-group" style="text-align: center;">
+            <input type="submit" class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;">
+        </div>
+    </form>
+
+
+
+    <hr>
+
+    <!--Content-->
+    <div class="container"> 
+        <!--Top-->
+        <center> <h1 style="font-family: 'Rowdies', cursive;color: #ffffff;">TOP Books</h1> </center>
+        <br>
+        <!--Recommendation-->
+        <div class="movie" style="color: #E8E8E8;">
+            <center>
+                <h2 style="font-family: 'Rowdies', cursive; color: black; background-color: lightgrey;" >TOP 100 BOOK</h2>
+            </center>
+        </div>
+
+        <div class="movie-content">
+
+            {%for i in range(0, lenn)%}
+            <div class="card" style="width: 14rem;">
+                
+              <div class="imghvr">
+                <img class="card-img-top" alt="The Trip - poster" src="{{ Image[i] }}">
+                
+                <div class="card-img-overlay">
+                    <span class="card-text" style="font-size:15px;background: #000000b8;color:white;padding:2px 5px;border-radius: 10px;">
+                        <span class="">&nbsp; N {{i+1}} </span>
+                    </span><br>
+                    <span class="card-text" style="font-size:15px;background: #000000b8;color:white;padding:2px 5px;border-radius: 10px;">
+                        <span class="fa fa-star checked">&nbsp; {{ Rating_ro[i] }} / 10</span>
+                    </span>
+                </div>
+                
+              </div>
+              <div class="card-body">
+                <h5 class="card-title" style="font-family: 'Rowdies', cursive;font-size: 17px;">{{ Title[i] }}</h5>
+                <h2 class="card-title" style="font-family: 'Rowdies', cursive;font-size: 17px;">Director :{{Author[i]}}</h2>
+                <h2 class="card-title" style="font-family: 'Rowdies', cursive;font-size: 17px;">Votes : {{ Votes[i] }}</h2>
+                <h2 class="card-title" style="font-family: 'Rowdies', cursive;font-size: 17px;">Ranting : {{ Rating_ro[i] }}</h2>
+                <span class="card-text" style="font-size:15px;background: #000000b8;color:white;padding:2px 5px;border-radius: 10px;"><span class="fa fa-star checked">&nbsp; {{Rating_ro[i]}} / 10</span></span>
+              </div>
+
+            </div>
+            {%endfor%}
+
+        </div>
+
+
+        <!--
+        <div class="movie-content">
+            
+            {%for i in range(0, lenn)%}
+            <div class="castcard card" style="width: 14rem;">
+                
+                <div class="imghvr">
+                  <img class="card-img-top cast-img" id="10978"  alt="Maggie Smith - profile" src="{{ Image[i] }}">
+                </div>
+                
+                <div class="card-body" style="font-family: 'Rowdies', cursive;font-size: 18px;">
+                  <h5 class="card-title">{{Title[i]}}</h5>
+                  <h5 class="card-title" style="font-size: 18px">
+                      <span style="color:#756969;font-size: 18px;">Director :{{Author[i]}}</span><br>
+                      <span style="color:#756969;font-size: 18px;">Votes : {{Votes[i]}}</span><br>
+                      <span style="color:#756969;font-size: 18px;">Ranting : {{Rating_ro[i]}}</span><br>
+                      
+                      <span class="card-text" style="font-size:15px;background: #000000b8;color:white;padding:2px 5px;border-radius: 10px;">
+                        <span class="fa fa-star checked">&nbsp; {{Rating_ro[i]}}</span>
+                    </span>
+                  </h5>
+                </div>
+                
+            </div>
+            {%endfor%}
+            
+        </div>
+        -->
+
+
+      
+    </div>
+
+</body>
+</html>

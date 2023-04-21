@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <style>
+      /* Set the background color for the entire page */
+      body {
+        background-image: url("/static/book.jpg");
+        background-repeat: repeat-x repeat-y;
+        background-position: center;
+      }
+
+      /* Define the book box container */
+      .book-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      /* Define the book box */
+      .book-box {
+        width: 20%; /* Each box will take up 20% of the row */
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      /* Define the book cover image */
+      .book-cover {
+        width: 100%;
+        height: 350px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Define the book information */
+      .book-info {
+        padding: 10px;
+        border: 1px solid gold;
+      }
+
+      /* Define the book title */
+      .book-title {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      /* Define the book author */
+      .book-author {
+        font-size: 14px;
+        color: gray;
+      }
+    </style>
+  </head>
+
+
+  <body>
+
+
+    <center><h1>Hello every fucking one</h1></center>
+
+    <center><a href="/recommend"><p>Searching for Book</p></a></center>
+
+    <div class="book-container">
+
+      <!-- Add more book boxes here -->
+      {%for i in range(0, lenn)%}
+      <div class="book-box">
+
+        <!--div class="book-cover" style="background-image: url('{{ Image[i] }}')"></div-->
+        <div class="book-info">
+          <center><img src="{{ Image[i] }}" alt=""></center>
+          <div class="book-title" style="color:white;">{{Title[i]}}</div>
+          <div class="book-author">Director :{{Author[i]}}</div>
+          <div class="book-author">Votes : {{Votes[i]}}</div>
+          <div class="book-author">Ranting : {{Rating_ro[i]}}</div>
+        </div>
+
+      </div>
+      {%endfor%}
+
+    </div>
+
+
+  </body>
+</html>
